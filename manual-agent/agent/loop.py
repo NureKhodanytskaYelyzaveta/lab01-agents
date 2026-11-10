@@ -4,7 +4,7 @@ import time
 from collections.abc import Callable
 
 from .environment import lookup_event_function
-from .errors import DecisionError
+from .errors import ApiError, DecisionError
 from .reasoning import get_decision
 from .state import AgentState
 from .validator import validate_decision
@@ -65,6 +65,12 @@ def run_agent(goal: str, decide: DecideFn = get_decision,
             record.update(action=decision["action"],
                           arguments=decision["arguments"],
                           decision_summary=decision.get("decision_summary", ""))
+        except ApiError as exc:
+            observation = f"API_ERROR: {exc}"
+            record.update(action="api_error", arguments=None, decision_summary="")
+            state.finished = True
+            state.stop_reason = "api_error"
+            state.final_answer = "Агент зупинився: зовнішній API недоступний (див. трасування)."
         except DecisionError as exc:
             # Помилка стає спостереженням, і модель отримує шанс виправитися
             observation = f"ERROR: {exc}"

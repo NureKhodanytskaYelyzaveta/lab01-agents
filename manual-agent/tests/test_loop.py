@@ -1,7 +1,7 @@
 """Тести циклу без звернень до API: рішення моделі підміняє сценарій."""
 
+from agent.errors import ApiError
 from agent.loop import run_agent
-
 
 def scripted(decisions):
     queue = iter(decisions)
@@ -42,3 +42,11 @@ def test_invalid_action_becomes_observation():
     state = run_agent("Тест", decide=decide)
     assert state.observations[0].startswith("ERROR: unknown action")
     assert state.stop_reason == "finish"
+
+def test_api_error_stops_agent_and_keeps_trace():
+    def broken(goal, observations, step, max_steps):
+        raise ApiError("503 UNAVAILABLE")
+
+    state = run_agent("Тест", decide=broken)
+    assert state.stop_reason == "api_error"
+    assert len(state.trace) == 1

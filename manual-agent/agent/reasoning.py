@@ -1,17 +1,20 @@
-"""Компонент прийняття рішень: LLM як політика policy(state) -> action."""
-
 import json
 import os
+import time
 
 from dotenv import load_dotenv
 from google import genai
+from google.genai import errors as genai_errors
 from google.genai import types
 
-from .errors import DecisionError
+from .errors import ApiError, DecisionError
 
 load_dotenv()
 
-MODEL = os.getenv("GEMINI_MODEL", "gemini-3.8-flash")
+MODEL = os.getenv("GEMINI_MODEL", "gemini-3.6-flash")
+
+RETRY_CODES = {429, 500, 503, 504}
+MAX_ATTEMPTS = 4
 
 AGENT_INSTRUCTION = """
 You are the decision component of a small educational AI agent about the
@@ -79,12 +82,19 @@ def parse_decision(text: str | None) -> dict:
 def get_decision(goal: str, observations: list[str], step: int, max_steps: int) -> dict:
     """REASON: один виклик LLM повертає одне структуроване рішення."""
     prompt = build_observation(goal, observations, step, max_steps)
-    response = get_client().models.generate_content(
-        model=MODEL,
-        contents=prompt,
-        config=types.GenerateContentConfig(
-            system_instruction=AGENT_INSTRUCTION,
-            response_mime_type="application/json",
-        ),
-    )
+    for attempt in range(1, MAX_ATTEMPTS + 1):
+        try:
+            response = get_client().models.generate_content(
+                model=MODEL,
+                contents=prompt,
+                config=types.GenerateContentConfig(
+                    system_instruction=AGENT_INSTRUCTION,
+                    response_mime_type="application/json",
+                ),
+            )
+            break
+        except genai_errors.APIError as exc:
+            if exc.code not in RETRY_CODES or attempt == MAX_ATTEMPTS:
+                raise ApiError(f"{exc.code} after {attempt} attempt(s)") from exc
+            time.sleep(2 * attempt)   # пауза 2, 4, 6 с
     return parse_decision(response.text)
