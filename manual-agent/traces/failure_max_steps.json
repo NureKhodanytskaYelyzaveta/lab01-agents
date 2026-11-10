@@ -1,0 +1,29 @@
+{
+  "goal": "Порівняй Awake, OnEnable і Start",
+  "stop_reason": "max_steps",
+  "steps": 2,
+  "llm_calls": 2,
+  "final_answer": "Агент зупинився: вичерпано ліміт кроків (2) без фінальної відповіді.",
+  "trace": [
+    {
+      "step": 1,
+      "action": "lookup_event_function",
+      "arguments": {
+        "name": "Awake"
+      },
+      "decision_summary": "Потрібно отримати інформацію про функцію Awake для порівняння.",
+      "observation": "awake: Awake викликається один раз, коли завантажується екземпляр скрипта, ще до Start. Він виконується, навіть якщо компонент вимкнений, але лише коли GameObject активний.",
+      "seconds": 2.0
+    },
+    {
+      "step": 2,
+      "action": "lookup_event_function",
+      "arguments": {
+        "name": "OnEnable"
+      },
+      "decision_summary": "Need to fetch information about OnEnable to compare it with Awake and Start.",
+      "observation": "onenable: OnEnable викликається щоразу, коли компонент стає увімкненим і активним. Під час першого завантаження він іде після Awake.",
+      "seconds": 3.56
+    }
+  ]
+}
