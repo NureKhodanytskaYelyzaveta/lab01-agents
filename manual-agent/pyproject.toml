@@ -1,7 +1,7 @@
 [project]
 name = "manual-agent"
 version = "0.1.0"
-description = "Add your description here"
+description = "Minimal observe-reason-act agent, Unity MonoBehaviour lifecycle"
 readme = "README.md"
 authors = [
     { name = "NureKhodanytskaYelyzaveta", email = "yelyzaveta.khodanytska@nure.ua" }
