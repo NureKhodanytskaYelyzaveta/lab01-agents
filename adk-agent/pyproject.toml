@@ -1,9 +1,9 @@
 [project]
 name = "adk-agent"
 version = "0.1.0"
-description = ""
+description = "ADK-агент: життєвий цикл MonoBehaviour (Unity)"
 authors = [
-    {name = "Your Name", email = "your@email.com"},
+    {name = "Ходаницька Єлизавета", email = "yelyzaveta.khodanytska@nure.ua"},
 ]
 
 

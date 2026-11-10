@@ -42,7 +42,7 @@ Rules:
   do not invent it.
 - If an observation starts with ERROR, fix your previous decision.
 - Do not repeat a lookup that is already present in the observations.
-- decision_summary is one sentence; do not reveal hidden chain-of-thought.
+- decision_summary is one short sentence in Ukrainian; do not reveal hidden chain-of-thought.
 """
 
 _client: genai.Client | None = None

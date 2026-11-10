@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-from app.environment import normalize_name, lookup_event_function
+from app.environment import lookup_event_function, normalize_name
 
 
 def test_normalize_name() -> None:

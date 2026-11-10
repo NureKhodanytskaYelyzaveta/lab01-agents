@@ -20,19 +20,15 @@ from google.genai import types
 from app.agent import root_agent
 
 
-def test_agent_stream() -> None:
-    """
-    Integration test for the agent stream functionality.
-    Tests that the agent returns valid streaming responses.
-    """
+def test_agent_calls_lookup_tool() -> None:
+    """Агент має викликати lookup_event_function для питання про Awake."""
 
     session_service = InMemorySessionService()
-
     session = session_service.create_session_sync(user_id="test_user", app_name="test")
     runner = Runner(agent=root_agent, session_service=session_service, app_name="test")
 
     message = types.Content(
-        role="user", parts=[types.Part.from_text(text="Why is the sky blue?")]
+        role="user", parts=[types.Part.from_text(text="Розкажи про функцію Awake")]
     )
 
     events = list(
@@ -43,15 +39,14 @@ def test_agent_stream() -> None:
             run_config=RunConfig(streaming_mode=StreamingMode.SSE),
         )
     )
-    assert len(events) > 0, "Expected at least one message"
 
-    has_text_content = False
-    for event in events:
-        if (
-            event.content
-            and event.content.parts
-            and any(part.text for part in event.content.parts)
-        ):
-            has_text_content = True
-            break
-    assert has_text_content, "Expected at least one message with text content"
+    calls = [
+        part.function_call
+        for event in events
+        if event.content and event.content.parts
+        for part in event.content.parts
+        if part.function_call
+    ]
+    assert any(call.name == "lookup_event_function" for call in calls), (
+        "Агент мав викликати інструмент lookup_event_function"
+    )
