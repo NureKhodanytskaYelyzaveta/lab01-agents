@@ -1,5 +1,33 @@
+
+# Environment variables and secrets
 .env
+.env.*
+!.env.example
+
+# Python environments and cache
 .venv/
+venv/
 __pycache__/
+*.py[cod]
 .pytest_cache/
 .ruff_cache/
+.ty/
+.coverage
+htmlcov/
+
+# ADK local data
+.adk/
+**/.adk/
+.google-agents-cli/
+**/.google-agents-cli/
+
+# IDE
+.vscode/
+.idea/
+
+# Logs
+*.log
+
+# Temporary and backup files
+*.save
+*.bak
