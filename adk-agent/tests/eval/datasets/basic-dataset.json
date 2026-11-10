@@ -1,31 +1,24 @@
 {
   "eval_cases": [
     {
-      "eval_case_id": "greeting",
-      "prompt": {
-        "role": "user",
-        "parts": [{"text": "Hello, what can you help me with?"}]
-      }
+      "eval_case_id": "single_function",
+      "prompt": {"role": "user", "parts": [{"text": "Розкажи про функцію FixedUpdate"}]}
     },
     {
-      "eval_case_id": "weather_query",
-      "prompt": {
-        "role": "user",
-        "parts": [{"text": "What's the weather like in San Francisco?"}]
-      }
+      "eval_case_id": "compare_two",
+      "prompt": {"role": "user", "parts": [{"text": "Порівняй Awake і Start"}]}
     },
     {
-      "eval_case_id": "capital_lookup",
-      "prompt": {
-        "role": "user",
-        "parts": [{"text": "What is the capital of France?"}]
-      },
-      "reference": {
-        "response": {
-          "role": "model",
-          "parts": [{"text": "The capital of France is Paris."}]
-        }
-      }
+      "eval_case_id": "compare_three",
+      "prompt": {"role": "user", "parts": [{"text": "Порівняй Awake, OnEnable і Start"}]}
+    },
+    {
+      "eval_case_id": "missing_function",
+      "prompt": {"role": "user", "parts": [{"text": "Опиши функцію OnApplicationQuit"}]}
+    },
+    {
+      "eval_case_id": "general_concept",
+      "prompt": {"role": "user", "parts": [{"text": "Що таке життєвий цикл MonoBehaviour в Unity?"}]}
     }
   ]
 }
