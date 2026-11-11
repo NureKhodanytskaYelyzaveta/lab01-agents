@@ -37,6 +37,7 @@ BEHAVIOR RULES:
    пошуку конкретного методу, дай коротке пояснення без виклику
    інструмента.
 7. За потреби порівнюй методи за призначенням і моментом виклику.
+8. Не викликай інструмент повторно з тим самим аргументом.
 
 LIMITATIONS:
 Використовуй інструмент як основне джерело перевірених фактів
@@ -51,7 +52,7 @@ root_agent = Agent(
     name="adk_agent",
     model=Gemini(
         model=MODEL,
-        retry_options=types.HttpRetryOptions(attempts=3),
+        retry_options=types.HttpRetryOptions(attempts=5),
     ),
     instruction=INSTRUCTION,
     tools=[lookup_event_function],
