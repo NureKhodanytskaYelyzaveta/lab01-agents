@@ -3,13 +3,14 @@
 import time
 from collections.abc import Callable
 
-from .environment import lookup_event_function
+from .environment import list_events_by_phase, lookup_event_function
 from .errors import ApiError, DecisionError
 from .reasoning import get_decision
 from .state import AgentState
 from .validator import validate_decision
 
 MAX_STEPS = 6
+MAX_LLM_CALLS = 10   # бюджет реальних запитів до LLM разом із повторами
 
 # Функцію рішень передають параметром: у тестах її замінює сценарій без LLM
 DecideFn = Callable[[str, list[str], int, int], dict]
@@ -21,6 +22,8 @@ def execute_action(decision: dict, state: AgentState) -> str | None:
     args = decision["arguments"]
     if action == "lookup_event_function":
         return lookup_event_function(args["name"])
+    if action == "list_events_by_phase":
+        return list_events_by_phase(args["phase"])
     if action == "finish":
         state.final_answer = args["answer"]
         state.finished = True
@@ -39,7 +42,8 @@ def print_step(record: dict) -> None:
 
 
 def run_agent(goal: str, decide: DecideFn = get_decision,
-              max_steps: int = MAX_STEPS) -> AgentState:
+              max_steps: int = MAX_STEPS,
+              max_llm_calls: int = MAX_LLM_CALLS) -> AgentState:
     state = AgentState(goal=goal)
 
     while not state.finished:
@@ -53,6 +57,15 @@ def run_agent(goal: str, decide: DecideFn = get_decision,
             )
             break
 
+        if state.llm_calls >= max_llm_calls:
+            state.finished = True
+            state.stop_reason = "max_llm_calls"
+            state.final_answer = (
+                f"Агент зупинився: вичерпано бюджет викликів LLM ({max_llm_calls}) "
+                "без фінальної відповіді."
+            )
+            break
+
         state.step += 1
         record: dict = {"step": state.step}
         decision: dict | None = None
@@ -60,12 +73,15 @@ def run_agent(goal: str, decide: DecideFn = get_decision,
         try:
             state.llm_calls += 1                       # OBSERVE + REASON
             decision = decide(state.goal, state.observations, state.step, max_steps)
+            # повторні запити (429/503) теж витрачають бюджет
+            state.llm_calls += decision.pop("_requests", 1) - 1
             validate_decision(decision)                # VALIDATE
             observation = execute_action(decision, state)   # ACT
             record.update(action=decision["action"],
                           arguments=decision["arguments"],
                           decision_summary=decision.get("decision_summary", ""))
         except ApiError as exc:
+            state.llm_calls += getattr(exc, "attempts", 1) - 1
             observation = f"API_ERROR: {exc}"
             record.update(action="api_error", arguments=None, decision_summary="")
             state.finished = True
