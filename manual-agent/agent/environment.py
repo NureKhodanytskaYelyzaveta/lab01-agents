@@ -72,3 +72,31 @@ def lookup_event_function(name: str) -> str:
     if key not in EVENT_FUNCTIONS:
         return f"{NOT_FOUND}: no verified information about '{name}'."
     return f"{key}: {EVENT_FUNCTIONS[key]}"
+
+
+# Фази життєвого циклу за Unity Manual, "Order of execution for event functions"
+PHASES: dict[str, tuple[str, ...]] = {
+    "initialization": ("Awake", "OnEnable", "Start"),
+    "physics": ("FixedUpdate",),
+    "game_logic": ("Update", "LateUpdate"),
+    "decommissioning": ("OnDisable", "OnDestroy"),
+}
+
+
+def list_events_by_phase(phase: str) -> str:
+    """Return verified list of MonoBehaviour event functions in one lifecycle phase.
+
+    Use it when the user asks which event functions belong to a phase.
+    Known phases: initialization, physics, game_logic, decommissioning.
+
+    Args:
+        phase: name of the phase, for example "initialization".
+
+    Returns:
+        "<phase>: <function>, <function>" or a line starting with NOT_FOUND.
+    """
+    key = phase.strip().lower().replace(" ", "_").replace("-", "_")
+    if key not in PHASES:
+        known = ", ".join(PHASES)
+        return f"{NOT_FOUND}: no verified phase '{phase}'. Known phases: {known}."
+    return f"{key}: {', '.join(PHASES[key])}"

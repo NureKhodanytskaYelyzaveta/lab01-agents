@@ -5,6 +5,7 @@ from .errors import DecisionError
 # Білий список дій і обов'язкових аргументів (action space)
 ALLOWED_ACTIONS: dict[str, set[str]] = {
     "lookup_event_function": {"name"},
+    "list_events_by_phase": {"phase"},
     "finish": {"answer"},
 }
 

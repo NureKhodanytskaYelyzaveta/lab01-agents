@@ -26,13 +26,17 @@ Available actions:
    Use it when verified information about a MonoBehaviour event function
    is needed.
    Arguments: {"name": string}   e.g. "Awake", "OnEnable", "FixedUpdate"
-2. finish
+2. list_events_by_phase
+   Use it when the user asks which event functions belong to a lifecycle phase.
+   Phases: initialization, physics, game_logic, decommissioning.
+   Arguments: {"phase": string}
+3. finish
    Use it when the verified observations are enough to reach the goal,
    or when the environment reported that the information does not exist.
    Arguments: {"answer": string}   final answer in Ukrainian
 
 Return valid JSON only:
-{"action": "lookup_event_function | finish",
+{"action": "lookup_event_function | list_events_by_phase | finish",
  "arguments": {...},
  "decision_summary": "one short sentence: why this action"}
 
@@ -63,7 +67,7 @@ def build_observation(goal: str, observations: list[str], step: int, max_steps: 
         f"GOAL:\n{goal}\n\n"
         f"CURRENT STEP: {step} of {max_steps}\n\n"
         f"VERIFIED OBSERVATIONS:\n{known}\n\n"
-        "AVAILABLE ACTIONS: lookup_event_function, finish\n"
+        "AVAILABLE ACTIONS: lookup_event_function, list_events_by_phase, finish\n"
         "Choose the next action."
     )
 
@@ -95,6 +99,10 @@ def get_decision(goal: str, observations: list[str], step: int, max_steps: int) 
             break
         except genai_errors.APIError as exc:
             if exc.code not in RETRY_CODES or attempt == MAX_ATTEMPTS:
-                raise ApiError(f"{exc.code} after {attempt} attempt(s)") from exc
+                err = ApiError(f"{exc.code} after {attempt} attempt(s)")
+                err.attempts = attempt
+                raise err from exc
             time.sleep(2 * attempt)   # пауза 2, 4, 6 с
-    return parse_decision(response.text)
+    decision = parse_decision(response.text)
+    decision["_requests"] = attempt   # скільки запитів пішло на це рішення
+    return decision
