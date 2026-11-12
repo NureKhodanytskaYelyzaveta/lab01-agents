@@ -5,7 +5,7 @@ from google.adk.apps import App
 from google.adk.models import Gemini
 from google.genai import types
 
-from .environment import lookup_event_function
+from .environment import list_events_by_phase, lookup_event_function
 
 MODEL = "gemini-3.6-flash"
 
@@ -38,6 +38,9 @@ BEHAVIOR RULES:
    інструмента.
 7. За потреби порівнюй методи за призначенням і моментом виклику.
 8. Не викликай інструмент повторно з тим самим аргументом.
+9. Якщо користувач питає, які методи належать до фази життєвого
+   циклу (initialization, physics, game_logic, decommissioning),
+   використовуй інструмент list_events_by_phase.
 
 LIMITATIONS:
 Використовуй інструмент як основне джерело перевірених фактів
@@ -55,7 +58,7 @@ root_agent = Agent(
         retry_options=types.HttpRetryOptions(attempts=5),
     ),
     instruction=INSTRUCTION,
-    tools=[lookup_event_function],
+    tools=[lookup_event_function, list_events_by_phase],
 )
 
 app = App(
