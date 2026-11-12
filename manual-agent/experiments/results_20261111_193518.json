@@ -1,0 +1,28 @@
+[
+  {
+    "type": "D",
+    "system": "one-shot",
+    "run": 1,
+    "goal": "Опиши OnTriggerEnter",
+    "llm_calls": 1,
+    "actions": 0,
+    "seconds": 0.71,
+    "stop": "error",
+    "error": "ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https",
+    "answer": null
+  },
+  {
+    "type": "D",
+    "system": "manual-agent",
+    "run": 1,
+    "goal": "Опиши OnTriggerEnter",
+    "llm_calls": 1,
+    "steps": 1,
+    "actions": 0,
+    "seconds": 14.64,
+    "stop": "api_error",
+    "error": null,
+    "trace": "traces/trace_20261111_193448.json",
+    "answer": "Агент зупинився: зовнішній API недоступний (див. трасування)."
+  }
+]

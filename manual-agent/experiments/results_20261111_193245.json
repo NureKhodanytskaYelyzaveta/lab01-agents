@@ -1,0 +1,28 @@
+[
+  {
+    "type": "E",
+    "system": "one-shot",
+    "run": 1,
+    "goal": "Що таке життєвий цикл MonoBehaviour?",
+    "llm_calls": 1,
+    "actions": 0,
+    "seconds": 1.32,
+    "stop": "error",
+    "error": "ClientError: 429 RESOURCE_EXHAUSTED. {'error': {'code': 429, 'message': 'You exceeded your current quota, please check your plan and billing details. For more information on this error, head to: https",
+    "answer": null
+  },
+  {
+    "type": "E",
+    "system": "manual-agent",
+    "run": 1,
+    "goal": "Що таке життєвий цикл MonoBehaviour?",
+    "llm_calls": 2,
+    "steps": 2,
+    "actions": 1,
+    "seconds": 18.63,
+    "stop": "api_error",
+    "error": null,
+    "trace": "traces/trace_20261111_193240.json",
+    "answer": "Агент зупинився: зовнішній API недоступний (див. трасування)."
+  }
+]

@@ -1,0 +1,17 @@
+{
+  "goal": "Що таке життєвий цикл MonoBehaviour?",
+  "stop_reason": "api_error",
+  "steps": 1,
+  "llm_calls": 1,
+  "final_answer": "Агент зупинився: зовнішній API недоступний (див. трасування).",
+  "trace": [
+    {
+      "step": 1,
+      "action": "api_error",
+      "arguments": null,
+      "decision_summary": "",
+      "observation": "API_ERROR: 429 after 4 attempt(s)",
+      "seconds": 13.92
+    }
+  ]
+}

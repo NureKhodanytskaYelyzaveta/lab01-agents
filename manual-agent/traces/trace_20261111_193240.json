@@ -1,0 +1,27 @@
+{
+  "goal": "Що таке життєвий цикл MonoBehaviour?",
+  "stop_reason": "api_error",
+  "steps": 2,
+  "llm_calls": 2,
+  "final_answer": "Агент зупинився: зовнішній API недоступний (див. трасування).",
+  "trace": [
+    {
+      "step": 1,
+      "action": "lookup_event_function",
+      "arguments": {
+        "name": "Awake"
+      },
+      "decision_summary": "Перевіряю інформацію про функцію Awake для пояснення життєвого циклу.",
+      "observation": "awake: Awake викликається один раз, коли завантажується екземпляр скрипта, ще до Start. Він виконується, навіть якщо компонент вимкнений, але лише коли GameObject активний.",
+      "seconds": 5.06
+    },
+    {
+      "step": 2,
+      "action": "api_error",
+      "arguments": null,
+      "decision_summary": "",
+      "observation": "API_ERROR: 429 after 4 attempt(s)",
+      "seconds": 13.57
+    }
+  ]
+}
