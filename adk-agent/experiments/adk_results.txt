@@ -1,0 +1,169 @@
+⚠️  Warning: Could not query installed skills via npx: 'npx' is not installed or not on PATH.
+  Install Node.js (https://nodejs.org/en/download) and try again.
+Starting a temporary local server on port 18080 (stops automatically when done).
+Starting a temporary local server on port 18080 (stops automatically when done).
+[user]: Розкажи про FixedUpdate
+[adk_agent]: 
+[tool_call: lookup_event_function({"name": "FixedUpdate"})]
+[tool_response: lookup_event_function -> {"result": "fixedupdate: FixedUpdate \u0432\u0438\u043a\u043b\u0438\u043a\u0430\u0454\u0442\u044c\u0441\u044f \u0437 \u0444\u0456\u043a\u0441\u043e\u0432\u0430\u043d\u0438\u043c \u043a\u0440\u043e\u043a\u043e\u043c \u0447\u0430\u0441\u0443 \u043d\u0435\u0437\u0430\u043b\u0435\u0436\u043d\u043e \u0432\u0456\u0434 \u0447\u0430\u0441\u0442\u043e\u0442\u0438 \u043a\u0430\u0434\u0440\u0456\u0432 \u0456 \u043f\u0440\u0438\u0437\u043d\u0430\u0447\u0435\u043d\u0438\u0439 \u0434\u043b\u044f \u0444\u0456\u0437\u0438\u0447\u043d\u0438\u0445 \u0440\u043e\u0437\u0440\u0430\u0445\u0443\u043d\u043a\u0456\u0432. \u0417\u0430 \u043e\u0434\u0438\u043d \u043a\u0430\u0434\u0440 \u0432\u0456\u043d \u043c\u043e\u0436\u0435 \u0432\u0438\u043a\u043e\u043d\u0430\u0442\u0438\u0441\u044f \u043a\u0456\u043b\u044c\u043a\u0430 \u0440\u0430\u0437\u0456\u0432 \u0430\u0431\u043e \u0436\u043e\u0434\u043d\u043e\u0433\u043e."}]**FixedUpdate** — це метод життєвого циклу Unity, який має такі ключові особливості:
+
+* **Призначення:** Призначений для фізичних розрахунків (наприклад, додавання сил до `Rigidbody`, зміна швидкості фізичних об'єктів тощо).
+* **Частота виклику:** Викликається з фіксованим кроком часу (fixed time step) незалежно від поточної частоти кадрів (FPS).
+* **Особливість виконання:** За один графічний кадр метод **FixedUpdate** може виконатися декілька разів, один раз або взагалі жодного (залежно від того, скільки фізичного часу минуло з попереднього кадру).
+
+**Основне правило:** Усе, що пов'язане з фізикою Unity (Physics engine), слід обробляти саме у **FixedUpdate**, а не в **Update**, щоб фізична поведінка об'єктів була стабільною та не залежала від швидкодії пристрою.
+
+Session: e53a6be2-644f-4463-82a1-625b9d1dceb0
+  One-off session — add --start-server to keep the local server (and its sessions) alive so you can resume with --session-id.
+Local server stopped.
+
+real	0m19.843s
+user	0m3.050s
+sys	0m1.195s
+⚠️  Warning: Could not query installed skills via npx: 'npx' is not installed or not on PATH.
+  Install Node.js (https://nodejs.org/en/download) and try again.
+Starting a temporary local server on port 18080 (stops automatically when done).
+Starting a temporary local server on port 18080 (stops automatically when done).
+[user]: Порівняй Awake і Start
+[adk_agent]: 
+[tool_call: lookup_event_function({"name": "Awake"})]
+[tool_call: lookup_event_function({"name": "Start"})]
+[tool_response: lookup_event_function -> {"result": "awake: Awake \u0432\u0438\u043a\u043b\u0438\u043a\u0430\u0454\u0442\u044c\u0441\u044f \u043e\u0434\u0438\u043d \u0440\u0430\u0437, \u043a\u043e\u043b\u0438 \u0437\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0443\u0454\u0442\u044c\u0441\u044f \u0435\u043a\u0437\u0435\u043c\u043f\u043b\u044f\u0440 \u0441\u043a\u0440\u0438\u043f\u0442\u0430, \u0449\u0435 \u0434\u043e Start. \u0412\u0456\u043d \u0432\u0438\u043a\u043e\u043d\u0443\u0454\u0442\u044c\u0441\u044f, \u043d\u0430\u0432\u0456\u0442\u044c \u044f\u043a\u0449\u043e \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442 \u0432\u0438\u043c\u043a\u043d\u0435\u043d\u0438\u0439, \u0430\u043b\u0435 \u043b\u0438\u0448\u0435 \u043a\u043e\u043b\u0438 GameObject \u0430\u043a\u0442\u0438\u0432\u043d\u0438\u0439."}]
+[tool_response: lookup_event_function -> {"result": "start: Start \u0432\u0438\u043a\u043b\u0438\u043a\u0430\u0454\u0442\u044c\u0441\u044f \u043e\u0434\u0438\u043d \u0440\u0430\u0437 \u043f\u0435\u0440\u0435\u0434 \u043f\u0435\u0440\u0448\u0438\u043c \u043a\u0430\u0434\u0440\u043e\u043c, \u0443 \u044f\u043a\u043e\u043c\u0443 \u0432\u0438\u043a\u043e\u043d\u0443\u0454\u0442\u044c\u0441\u044f Update, \u0456 \u043b\u0438\u0448\u0435 \u044f\u043a\u0449\u043e \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442 \u0443\u0432\u0456\u043c\u043a\u043d\u0435\u043d\u0438\u0439. \u0412\u0456\u043d \u0456\u0434\u0435 \u043f\u0456\u0441\u043b\u044f Awake."}]Ось порівняння методів **Awake** та **Start**:
+
+---
+
+### **1. Awake**
+* **Коли викликається:** Один раз, під час завантаження екземпляра скрипта, ще до виклику `Start`.
+* **Залежність від стану компонента:** Виконується навіть тоді, коли компонент вимкнений (`enabled = false`), за умови, що сам `GameObject` є активним.
+* **Основне призначення:** Первинна внутрішня ініціалізація об'єкта (наприклад, налаштування власних змінних, отримання посилань на компоненти цього ж об'єкта через `GetComponent`).
+
+---
+
+### **2. Start**
+* **Коли викликається:** Один раз перед першим кадром, у якому виконується `Update` (тобто після `Awake`).
+* **Залежність від стану компонента:** Викликається **лише тоді**, коли компонент увімкнений (`enabled = true`).
+* **Основне призначення:** Ініціалізація, яка залежить від інших об'єктів або компонентів, що вже пройшли свою ініціалізацію в `Awake`.
+
+---
+
+### **Головні відмінності (підсумок):**
+
+| Критерій | `Awake` | `Start` |
+| :--- | :--- | :--- |
+| **Порядок виклику** | Першим (під час завантаження скрипта) | Другим (після `Awake`, перед першим `Update`) |
+| **Якщо компонент вимкнений** | Викликається все одно (поки `GameObject` активний) | **Не** викликається, поки компонент не увімкнуть |
+
+Session: 7ee0efdc-9c93-4f70-ad82-e31e4baa4182
+  One-off session — add --start-server to keep the local server (and its sessions) alive so you can resume with --session-id.
+Local server stopped.
+
+real	1m15.915s
+user	0m3.290s
+sys	0m1.009s
+⚠️  Warning: Could not query installed skills via npx: 'npx' is not installed or not on PATH.
+  Install Node.js (https://nodejs.org/en/download) and try again.
+Starting a temporary local server on port 18080 (stops automatically when done).
+Starting a temporary local server on port 18080 (stops automatically when done).
+[user]: Порівняй Awake, OnEnable і Start
+[adk_agent]: 
+[tool_call: lookup_event_function({"name": "Awake"})]
+[tool_call: lookup_event_function({"name": "OnEnable"})]
+[tool_call: lookup_event_function({"name": "Start"})]
+[tool_response: lookup_event_function -> {"result": "awake: Awake \u0432\u0438\u043a\u043b\u0438\u043a\u0430\u0454\u0442\u044c\u0441\u044f \u043e\u0434\u0438\u043d \u0440\u0430\u0437, \u043a\u043e\u043b\u0438 \u0437\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0443\u0454\u0442\u044c\u0441\u044f \u0435\u043a\u0437\u0435\u043c\u043f\u043b\u044f\u0440 \u0441\u043a\u0440\u0438\u043f\u0442\u0430, \u0449\u0435 \u0434\u043e Start. \u0412\u0456\u043d \u0432\u0438\u043a\u043e\u043d\u0443\u0454\u0442\u044c\u0441\u044f, \u043d\u0430\u0432\u0456\u0442\u044c \u044f\u043a\u0449\u043e \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442 \u0432\u0438\u043c\u043a\u043d\u0435\u043d\u0438\u0439, \u0430\u043b\u0435 \u043b\u0438\u0448\u0435 \u043a\u043e\u043b\u0438 GameObject \u0430\u043a\u0442\u0438\u0432\u043d\u0438\u0439."}]
+[tool_response: lookup_event_function -> {"result": "onenable: OnEnable \u0432\u0438\u043a\u043b\u0438\u043a\u0430\u0454\u0442\u044c\u0441\u044f \u0449\u043e\u0440\u0430\u0437\u0443, \u043a\u043e\u043b\u0438 \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442 \u0441\u0442\u0430\u0454 \u0443\u0432\u0456\u043c\u043a\u043d\u0435\u043d\u0438\u043c \u0456 \u0430\u043a\u0442\u0438\u0432\u043d\u0438\u043c. \u041f\u0456\u0434 \u0447\u0430\u0441 \u043f\u0435\u0440\u0448\u043e\u0433\u043e \u0437\u0430\u0432\u0430\u043d\u0442\u0430\u0436\u0435\u043d\u043d\u044f \u0432\u0456\u043d \u0456\u0434\u0435 \u043f\u0456\u0441\u043b\u044f Awake."}]
+[tool_response: lookup_event_function -> {"result": "start: Start \u0432\u0438\u043a\u043b\u0438\u043a\u0430\u0454\u0442\u044c\u0441\u044f \u043e\u0434\u0438\u043d \u0440\u0430\u0437 \u043f\u0435\u0440\u0435\u0434 \u043f\u0435\u0440\u0448\u0438\u043c \u043a\u0430\u0434\u0440\u043e\u043c, \u0443 \u044f\u043a\u043e\u043c\u0443 \u0432\u0438\u043a\u043e\u043d\u0443\u0454\u0442\u044c\u0441\u044f Update, \u0456 \u043b\u0438\u0448\u0435 \u044f\u043a\u0449\u043e \u043a\u043e\u043c\u043f\u043e\u043d\u0435\u043d\u0442 \u0443\u0432\u0456\u043c\u043a\u043d\u0435\u043d\u0438\u0439. \u0412\u0456\u043d \u0456\u0434\u0435 \u043f\u0456\u0441\u043b\u044f Awake."}]Ось порівняння методів життєвого циклу **Awake**, **OnEnable** та **Start** на основі фактів Unity MonoBehaviour:
+
+---
+
+### 1. Порядок виклику під час першого завантаження
+1. **Awake** — викликається першим.
+2. **OnEnable** — викликається після `Awake` (під час першого завантаження).
+3. **Start** — викликається після `Awake` (і після `OnEnable`) безпосередньо перед першим кадром, у якому виконується `Update`.
+
+---
+
+### 2. Кількість викликів
+* **Awake**: викликається **один раз** за життєвий цикл екземпляра скрипта.
+* **OnEnable**: викликається **щоразу**, коли компонент стає увімкненим та активним (може викликатися багаторазово під час гри).
+* **Start**: викликається **один раз** за життєвий цикл компонента.
+
+---
+
+### 3. Залежність від стану компонента (Enabled / Disabled)
+* **Awake**: виконується, **навіть якщо сам компонент вимкнений** (але GameObject має бути активним).
+* **OnEnable**: викликається **тільки тоді**, коли компонент стає увімкненим і активним.
+* **Start**: викликається **лише якщо компонент увімкнений**.
+
+---
+
+### Порівняльна таблиця
+
+| Властивість | Awake | OnEnable | Start |
+| :--- | :--- | :--- | :--- |
+| **Кількість викликів** | 1 раз | Щоразу при вмиканні | 1 раз |
+| **Чи викликається, якщо компонент вимкнений?** | Так (якщо GameObject активний) | Ні | Ні |
+| **Момент виклику** | При завантаженні екземпляра | При активації/вмиканні компонента | Перед першим кадром `Update` |
+| **Типове призначення** | Внутрішня ініціалізація (пошук власних компонентів) | Підписка на події, скидання стану | Початкова логіка, що залежить від інших об'єктів |
+
+Session: 3e7604c2-b354-4b62-96d2-ea5fb5dcabab
+  One-off session — add --start-server to keep the local server (and its sessions) alive so you can resume with --session-id.
+Local server stopped.
+
+real	0m12.368s
+user	0m3.100s
+sys	0m0.636s
+⚠️  Warning: Could not query installed skills via npx: 'npx' is not installed or not on PATH.
+  Install Node.js (https://nodejs.org/en/download) and try again.
+Starting a temporary local server on port 18080 (stops automatically when done).
+Starting a temporary local server on port 18080 (stops automatically when done).
+[user]: Опиши OnTriggerEnter
+[adk_agent]: 
+[tool_call: lookup_event_function({"name": "OnTriggerEnter"})]
+[tool_response: lookup_event_function -> {"result": "NOT_FOUND: no verified information about 'OnTriggerEnter'."}]На жаль, у моїй базі даних немає перевіреної інформації про метод `OnTriggerEnter` (інструмент повернув `NOT_FOUND`). 
+
+Загалом у Unity метод **OnTriggerEnter** (або `OnTriggerEnter2D` для 2D-фізики) викликається в той момент, коли інший коллайдер (Collider) входить у зону коллайдера, у якого увімкнено прапорець **Is Trigger**. Для спрацьовування події принаймні один із двох об'єктів повинен мати компонент **Rigidbody**.
+
+Session: fad4a621-5a3c-4a03-8317-7be5111d5d1a
+  One-off session — add --start-server to keep the local server (and its sessions) alive so you can resume with --session-id.
+Local server stopped.
+
+real	1m28.829s
+user	0m3.404s
+sys	0m0.749s
+⚠️  Warning: Could not query installed skills via npx: 'npx' is not installed or not on PATH.
+  Install Node.js (https://nodejs.org/en/download) and try again.
+Starting a temporary local server on port 18080 (stops automatically when done).
+Starting a temporary local server on port 18080 (stops automatically when done).
+[user]: Що таке життєвий цикл MonoBehaviour?
+[adk_agent]: **Життєвий цикл MonoBehaviour** в Unity — це послідовність автоматичних викликів спеціальних методів (подій або callback-функцій), які Unity викликає в скриптах, успадкованих від класу `MonoBehaviour`, від моменту створення об'єкта до його знищення.
+
+Unity автоматично керує цими методами залежно від стану об'єкта в сцені, логіки кадрів та обробки фізики.
+
+### Основні етапи та методи життєвого циклу:
+
+1. **Ініціалізація (Initialization):**
+   * `Awake` — викликається першим при завантаженні або створенні об'єкта (навіть якщо компонент вимкнено). Використовується для первинного налаштування змінних та зв'язків.
+   * `OnEnable` — викликається кожного разу, коли об'єкт або компонент стає активним.
+   * `Start` — викликається перед першим оновленням кадру, але тільки якщо компонент увімкнено.
+
+2. **Оновлення та логіка (Updates):**
+   * `FixedUpdate` — викликається через однакові інтервали часу (не залежить від FPS). Використовується для роботи з фізикою (`Rigidbody`).
+   * `Update` — викликається щокадру. Використовується для основної ігрової логіки, зчитування вводу від гравця (`Input`) та таймерів.
+   * `LateUpdate` — викликається щокадру після завершення всіх методів `Update`. Зручно використовувати для слідування камери за персонажем.
+
+3. **Деактивація та знищення (Deactivation & Destruction):**
+   * `OnDisable` — викликається, коли об'єкт або компонент стає неактивним.
+   * `OnDestroy` — викликається безпосередньо перед знищенням об'єкта чи компонента або при зміні сцени. Використовується для очищення ресурсів.
+
+Розуміння життєвого циклу допомагає правильно структурувати код, уникати помилок ініціалізації (наприклад, `NullReferenceException`) та оптимізувати продуктивність гри. 
+
+Якщо вас цікавить детальніша інформація про будь-який із цих методів, запитуйте!
+
+Session: 7efc3ca0-b359-462f-8a7a-eb01e9a489a8
+  One-off session — add --start-server to keep the local server (and its sessions) alive so you can resume with --session-id.
+Local server stopped.
+
+real	0m22.174s
+user	0m3.463s
+sys	0m0.879s
